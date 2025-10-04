@@ -5,14 +5,15 @@
   Я хочу зарегистрироваться в системе
   Что бы получить доступ к личному кабинету
 
-  Предыстория: Совершен вход в магазин OpenCart "http://217.74.37.176/?route=account/register&language=ru-ru"
+  Предыстория:
+  * Совершен вход в магазин OpenCart "http://217.74.37.176/?route=account/register&language=ru-ru"
 
   @correct
   Сценарий: Успешная регистрация
     * Форма регистрации заполняется данными:
       | firstname | Иван                   |
       | lastname  | Иванов                 |
-      | email     | validmail997@gmail.com |
+      | email     | validmail991@gmail.com |
       | password  | 6739DjkI!l             |
     * Включается подписка на новости
     * Принимаются условия соглашения
@@ -24,7 +25,7 @@
     * Форма регистрации заполняется данными:
       | firstname | Иван                 |
       | lastname  | 1236                 |
-      | email     | validmail682@mail.ru  |
+      | email     | validmail127@mail.ru |
       | password  | 6739DjkI!l           |
     * Включается подписка на новости
     * Принимаются условия соглашения
@@ -36,7 +37,7 @@
     * Форма регистрации заполняется данными:
       | firstname | Иван                  |
       | lastname  | Иванов                |
-      | email     | validmail765@mail.ru   |
+      | email     | validmail229@mail.ru  |
       | password  | 1234887761            |
     * Включается подписка на новости
     * Принимаются условия соглашения
