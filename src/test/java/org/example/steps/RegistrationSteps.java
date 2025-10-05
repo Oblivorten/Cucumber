@@ -11,11 +11,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 @Epic("Регистрация")
 @Feature("Регистрация пользователя")
@@ -24,15 +33,51 @@ public class RegistrationSteps {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @Step("Открываем страницу {url}")
-    @Дано("Совершен вход в магазин OpenCart {string}")
-    public void openBrowser(String url) {
-        System.setProperty("webdriver.chromedriver.driver", "/home/nikita/IdeaProjects/cucumber-tests/src/test/resources/chromedriver");
-        driver = new ChromeDriver();
+    private String browser;
+    private String mode;
+    private String selenoidUrl;
+
+    public void getConfig() throws IOException {
+        Properties props = new Properties();
+        props.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
+        browser = System.getenv().getOrDefault("BROWSER", props.getProperty("browser", "chrome"));
+        mode = System.getenv().getOrDefault("MODE", props.getProperty("mode", "local"));
+        selenoidUrl = System.getenv().getOrDefault("SELENOID.URL", props.getProperty("selenoid.url", "http://localhost:4444/wd/hub"));
+    }
+
+    private void initDriver() throws MalformedURLException {
+        if (mode.equalsIgnoreCase("remote")) {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            Map<String, Object> selenoidOptions = new HashMap<>();
+            capabilities.setBrowserName(browser);
+            selenoidOptions.put("enableVNC", true);
+            selenoidOptions.put("enableVideo", false);
+            capabilities.setCapability("selenoid:options", selenoidOptions);
+            driver = new RemoteWebDriver(new URL(selenoidUrl), capabilities);
+        } else {
+            if ("chrome".equalsIgnoreCase(browser)) {
+                System.setProperty("webdriver.chrome.driver", "/home/nikita/IdeaProjects/cucumber-tests/src/test/resources/chromedriver");
+                driver = new ChromeDriver();
+            } else if ("firefox".equalsIgnoreCase(browser)) {
+                System.setProperty("webdriver.gecko.driver", "/home/nikita/IdeaProjects/cucumber-tests/src/test/resources/geckodriver.exe");
+                driver = new FirefoxDriver();
+            } else if ("edge".equalsIgnoreCase(browser)) {
+                System.setProperty("webdriver.edge.driver", "/home/nikita/IdeaProjects/cucumber-tests/src/test/resources/msedgedriver");
+                driver = new EdgeDriver();
+            }
+        }
+
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    @Step("Открываем страницу {url}")
+    @Дано("Совершен вход в магазин OpenCart {string}")
+    public void openBrowser(String url) throws IOException {
+        getConfig();
+        initDriver();
         driver.get(url);
     }
 
