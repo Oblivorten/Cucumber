@@ -13,7 +13,7 @@
     * Форма регистрации заполняется данными:
       | firstname | Иван                   |
       | lastname  | Иванов                 |
-      | email     | validmail991@gmail.com |
+      | email     | validmail961@gmail.com |
       | password  | 6739DjkI!l             |
     * Включается подписка на новости
     * Принимаются условия соглашения
@@ -25,7 +25,7 @@
     * Форма регистрации заполняется данными:
       | firstname | Иван                 |
       | lastname  | 1236                 |
-      | email     | validmail127@mail.ru |
+      | email     | validmail197@mail.ru |
       | password  | 6739DjkI!l           |
     * Включается подписка на новости
     * Принимаются условия соглашения
@@ -37,7 +37,7 @@
     * Форма регистрации заполняется данными:
       | firstname | Иван                  |
       | lastname  | Иванов                |
-      | email     | validmail229@mail.ru  |
+      | email     | validmail219@mail.ru  |
       | password  | 1234887761            |
     * Включается подписка на новости
     * Принимаются условия соглашения
