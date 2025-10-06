@@ -40,9 +40,9 @@ public class RegistrationSteps {
     public void getConfig() throws IOException {
         Properties props = new Properties();
         props.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
-        browser = System.getenv().getOrDefault("BROWSER", props.getProperty("browser", "chrome"));
-        mode = System.getenv().getOrDefault("MODE", props.getProperty("mode", "local"));
-        selenoidUrl = System.getenv().getOrDefault("SELENOID_URL", props.getProperty("selenoid_url", "http://jenkins.applineselenoid.fvds.ru:4444/wd/hub/"));
+        browser = System.getProperty("BROWSER", props.getProperty("browser", "chrome"));
+        mode = System.getProperty("MODE", props.getProperty("mode", "local"));
+        selenoidUrl = System.getProperty("SELENOID_URL", props.getProperty("selenoid_url", "http://jenkins.applineselenoid.fvds.ru:4444/wd/hub/"));
     }
 
     private void initDriver() throws MalformedURLException {
