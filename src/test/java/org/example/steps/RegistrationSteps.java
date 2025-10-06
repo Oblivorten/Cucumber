@@ -43,7 +43,7 @@ public class RegistrationSteps {
         browser = System.getProperty("BROWSER", props.getProperty("browser", "chrome"));
         mode = System.getProperty("MODE", props.getProperty("mode", "local"));
         selenoidUrl = System.getProperty("SELENOID_URL", props.getProperty("selenoid_url", "http://jenkins.applineselenoid.fvds.ru:4444/wd/hub/"));
-        
+
     }
 
     private void initDriver() throws MalformedURLException {

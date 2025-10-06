@@ -13,7 +13,7 @@
     * Форма регистрации заполняется данными:
       | firstname | Иван                   |
       | lastname  | Иванов                 |
-      | email     | validmail361@gmail.com |
+      | email     | validmail421@gmail.com |
       | password  | 6739DjkI!l             |
     * Включается подписка на новости
     * Принимаются условия соглашения
