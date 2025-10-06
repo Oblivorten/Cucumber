@@ -13,6 +13,7 @@
       <project.build.sourceEncoding>${encoding.type}</project.build.sourceEncoding>
       <project.reporting.outputEncoding>${encoding.type}</project.reporting.outputEncoding>
       <file.encoding>${encoding.type}</file.encoding>
+      <cucumberTags></cucumberTags>
   </properties>
   <dependencies>
       <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
@@ -103,6 +104,7 @@
                     <systemPropertyVariables>
                         <allure.results.directory>${project.build.directory}/reports/allure-results</allure.results.directory>
                         <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
+                        <cucumber.filter.tags>${cucumberTags}</cucumber.filter.tags>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
